@@ -21,18 +21,14 @@
     char input_buffer[20];
     while (1)
     {
-      vTaskDelay(10 / portTICK_PERIOD_MS);
-      if (Serial.available() != 0)
-      {
         int len = Serial.readBytesUntil('\n', input_buffer, sizeof(input_buffer) - 1);
         if (len > 0){
-          input_buffer[20 - 1] = '\0';
+          input_buffer[len] = '\0';
           User_Rate = atoi(input_buffer);
           int users_input = User_Rate;
           Serial.printf("\nRate Recieved: %d\n", users_input);
           memset(input_buffer, 0, 20);
         }
-      }
     }
 }
 
